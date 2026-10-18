@@ -1,4 +1,4 @@
-# Main app and fetching nodes
+# Ascendant main app and fetching nodes
 
 The source project can run as a main dashboard or as a lightweight fetching node
 with its own local web GUI. Double-click launchers are included for both roles;

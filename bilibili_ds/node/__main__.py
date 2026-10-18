@@ -30,6 +30,7 @@ def existing_node(url):
             return any(title in html for title in (
                 b'<title>Bilibili fetching node</title>',
                 b'<title>Bilibili Data Science fetching node</title>',
+                b'<title>Ascendant fetching node</title>',
             ))
     except (OSError, ValueError):
         return False
@@ -50,7 +51,7 @@ def node_server(port, retries):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Run a fetching node with a local web interface.')
+    parser = argparse.ArgumentParser(description='Run the Ascendant fetching node with a local web interface.')
     parser.add_argument('--port', type=int, default=8011)
     parser.add_argument('--port-retries', type=int, default=10)
     parser.add_argument('--open-browser', action='store_true')
@@ -61,7 +62,7 @@ def main():
         parser.error('Use a port from 0 to 65535 and port-retries from 0 to 100.')
     server, url = node_server(args.port, args.port_retries)
     if server is None:
-        print(f'Fetching node is already running: {url}', flush=True)
+        print(f'Ascendant fetching node is already running: {url}', flush=True)
         print('Reusing its GUI; its connection and current task are unchanged.', flush=True)
         if args.open_browser and not args.no_browser:
             open_browser(url, args.browser)
@@ -76,7 +77,7 @@ def main():
     for signum in (signal.SIGTERM, getattr(signal, 'SIGHUP', None)):
         if signum is not None:
             signal.signal(signum, stop)
-    print(f'Fetching node web GUI: {url}', flush=True)
+    print(f'Ascendant fetching node web GUI: {url}', flush=True)
     print('Keep this Terminal open. Pair using the main Mac connection URL and a fresh code.', flush=True)
     if args.open_browser and not args.no_browser:
         open_browser(url, args.browser)

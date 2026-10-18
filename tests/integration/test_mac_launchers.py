@@ -91,7 +91,7 @@ class MacLauncherIntegrationTests(unittest.TestCase):
                                                    stdin=subprocess.DEVNULL, stdout=log, stderr=log,
                                                    start_new_session=True)
                         try:
-                            prefix = "Serving Bilibili Data Science web UI at" if mode == "main" else "Fetching node web GUI:"
+                            prefix = "Serving Ascendant web UI at" if mode == "main" else "Ascendant fetching node web GUI:"
                             deadline = time.monotonic() + 30
                             base = None
                             while time.monotonic() < deadline:
@@ -115,7 +115,7 @@ class MacLauncherIntegrationTests(unittest.TestCase):
                             else:
                                 self.assertFalse((root / "browser-args.txt").exists())
                             html = self.request(base + "/")
-                            self.assertIn("Fetching nodes" if mode == "main" else "Bilibili Data Science fetching node", html)
+                            self.assertIn("Fetching nodes" if mode == "main" else "Ascendant fetching node", html)
                             connection_port = None
                             if mode == "main":
                                 self.assertFalse(state["running"])
@@ -210,7 +210,7 @@ class MacLauncherIntegrationTests(unittest.TestCase):
                 base = None
                 while time.monotonic() < deadline:
                     output = log_path.read_text()
-                    match = re.search(r'Fetching node web GUI: (http://127\.0\.0\.1:(\d+))', output)
+                    match = re.search(r'Ascendant fetching node web GUI: (http://127\.0\.0\.1:(\d+))', output)
                     if match:
                         base, port = match.group(1), int(match.group(2))
                         break

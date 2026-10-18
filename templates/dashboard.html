@@ -6,23 +6,16 @@
   <meta name="dev-reload-token" content="__DEV_RELOAD_TOKEN__">
   <meta name="ui-revision" content="__UI_REVISION__">
   <meta name="css-revision" content="__CSS_REVISION__">
-  <title>Bilibili Data Science</title>
+  <title>Ascendant</title>
   <link rel="stylesheet" href="/static/css/dashboard.css">
 </head>
 <body>
   <div class="global-navigation">
   <header>
-    <h1>Bilibili Data Science</h1>
-    <div id="status" class="muted">Loading...</div>
-  </header>
-  <div class="global-toolbar">
-  <nav class="main-nav" aria-label="Main navigation">
-    <button data-section="explore">Explore</button>
-    <button data-section="workspace" aria-current="page">Workspace</button>
-    <button data-section="settings">Settings</button>
-  </nav>
+    <div class="app-brand"><h1>Ascendant</h1><p>Bilibili creator analytics</p></div>
+    <div class="header-meta">
       <details id="memory-panel" class="memory-panel">
-        <summary title="Software memory usage"><span class="memory-label">Memory</span> <span id="memory-summary" class="muted">Checking…</span></summary>
+        <summary title="Software memory usage"><span class="memory-label">Memory</span><span id="memory-summary" hidden>Checking…</span><svg class="memory-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m3 4.5 3 3 3-3" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
         <div class="memory-content">
           <div class="page-heading"><h3>Software memory</h3><button id="memory-refresh" type="button" disabled>Refresh memory usage</button></div>
           <dl class="memory-metrics">
@@ -40,6 +33,15 @@
           <p id="memory-error" class="error-message" role="status" hidden></p>
         </div>
       </details>
+      <div id="status" class="muted">Loading...</div>
+    </div>
+  </header>
+  <div class="global-toolbar">
+    <nav class="main-nav" aria-label="Main navigation">
+      <button data-section="explore">Explore</button>
+      <button data-section="workspace" aria-current="page">Workspace</button>
+      <button data-section="settings">Settings</button>
+    </nav>
   </div>
   </div>
   <main>

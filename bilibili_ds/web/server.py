@@ -47,7 +47,7 @@ def main(args: Namespace) -> None:
             previous_handlers[signum] = signal.signal(signum, request_stop)
     try:
         tracking_worker.start()
-        print(f"Serving Bilibili Data Science web UI at {url}")
+        print(f"Serving Ascendant web UI at {url}")
         if args.open_browser:
             open_browser(url, args.browser)
         print("Press Ctrl+C to stop the server.")

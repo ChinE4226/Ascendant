@@ -14,7 +14,7 @@ import uuid
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run the local Bilibili Data Science web server.")
+    parser = argparse.ArgumentParser(description="Run the local Ascendant web server.")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", default=8000, type=int)
     parser.add_argument("--port-retries", default=10, type=int)

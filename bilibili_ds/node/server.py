@@ -35,6 +35,7 @@ class NodeGUIHandler(BaseHTTPRequestHandler):
                 name, mime = assets[path]
                 self.send_bytes((ASSETS / name).read_bytes(), mime)
             elif path == '/api/status':
+                # Keep the service identifier compatible with existing node launchers.
                 self.send_json({'service': 'Bilibili fetching node', **self.server.worker.snapshot()})
             elif path == '/favicon.ico':
                 self.send_bytes(b'', 'image/x-icon', 204)

@@ -108,7 +108,7 @@ server.stderr.on('data', data => log += data);
     assert.equal(await page.locator('#analysis-collection').inputValue(), collectionId);
     assert.equal(await page.locator('#analysis-min-views').inputValue(), '1000');
     const templateFile = path.join(root, 'templates/dashboard.html');
-    fs.writeFileSync(templateFile, fs.readFileSync(templateFile, 'utf8').replace('<h1>Bilibili Data Science</h1>', '<h1>Live HTML update verified</h1>'));
+    fs.writeFileSync(templateFile, fs.readFileSync(templateFile, 'utf8').replace('<h1>Ascendant</h1>', '<h1>Live HTML update verified</h1>'));
     await page.locator('h1').filter({ hasText: 'Live HTML update verified' }).waitFor();
     await settled();
     assert.equal(navigations, 5);

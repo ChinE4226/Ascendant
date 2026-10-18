@@ -1,1 +1,1 @@
-"""Shared application modules for Bilibili Data Science."""
+"""Shared application modules for Ascendant, a Bilibili analytics application."""

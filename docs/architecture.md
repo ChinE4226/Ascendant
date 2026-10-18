@@ -1,13 +1,13 @@
-# Project Architecture
+# Ascendant Architecture
 
-The project is a local browser application backed by reusable Python modules.
+Ascendant is a local browser application backed by reusable Python modules.
 The browser uses native JavaScript modules; no
 JavaScript build step or additional web framework is required.
 
 ## Directory Map
 
 ```text
-Bilibili_DataScience/
+Ascendant/
     bilibili_ds/             Shared Python application code
         config.py           Project paths and defaults
         state.py            Process-wide request rate

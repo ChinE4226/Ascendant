@@ -1,6 +1,8 @@
-# Bilibili Data Science
+# Ascendant
 
-A local Python web application for exploring Bilibili creators and videos.
+Ascendant is a local Python web application for exploring Bilibili creators and videos.
+
+Source repository: [ChinE4226/Ascendant](https://github.com/ChinE4226/Ascendant).
 
 ## Getting Started
 
@@ -54,6 +56,11 @@ existing cache without copying credentials. The node always defaults to its loca
 runtime. `BILIBILI_RUNTIME_DIR` explicitly overrides either choice.
 An existing working project environment remains usable;
 leave legacy `.venv`, `venv` and `.runtime` folders out of a source-only sync.
+
+The application was previously named Bilibili Data Science. Its repository and
+project folder are now named `Ascendant`. The Python package `bilibili_ds`, launcher
+filenames, and existing `BilibiliDataScience` application support directory retain
+their names for compatibility. The rename requires no data or account migration.
 
 ## Project Structure
 
@@ -212,7 +219,7 @@ For an offline error-interface check, run
 `python scripts/preview_dashboard.py --simulate-http-error 412` and click
 **Fetch / Refresh**. This preview uses temporary data and makes no Bilibili requests.
 
-Click the compact **Memory** badge in the top navigation to inspect current server RAM
+Click the muted **Memory** control beside the account/request status to inspect current server RAM
 (RSS), estimated RAM for each retained dataset, and cached mission/chart/task
 counts in a popover without moving the page content. It refreshes every 10 seconds
 while the tab is visible. The server number

@@ -94,7 +94,7 @@ setup_application() {
   select_runtime
   select_python
   if [ "$LAUNCH_MODE" = main ] && dependencies_ready; then
-    echo "The main environment is ready. Double-click start-main.command."
+    echo "The Ascendant main environment is ready. Double-click start-main.command."
     return
   fi
   if [ ! -d "$LAUNCH_ENV_DIR" ]; then
@@ -103,7 +103,7 @@ setup_application() {
     LAUNCH_PYTHON="$LAUNCH_ENV_DIR/bin/python"
   fi
   if dependencies_ready; then
-    echo "The $LAUNCH_MODE environment is ready."
+    echo "The Ascendant $LAUNCH_MODE environment is ready."
   else
     local requirements="$LAUNCH_ROOT/requirements.txt"
     if [ "$LAUNCH_MODE" = node ]; then
@@ -132,7 +132,7 @@ launch_application() {
   dependencies_ready || launch_error "Open setup-$LAUNCH_MODE.command once, then try this launcher again."
   echo "Keep this Terminal window open while using the app; press Control+C to stop."
   if [ "$LAUNCH_MODE" = main ]; then
-    echo "Starting the main dashboard at http://127.0.0.1:8000 or the next free port."
+    echo "Starting the Ascendant dashboard at http://127.0.0.1:8000 or the next free port."
     if [ "$development" = 1 ]; then
       echo "Interface changes update automatically; Python edits restart the development server."
       echo "Environment, sign-in and runtime match start-main.command."
@@ -141,7 +141,7 @@ launch_application() {
     echo "Interface changes update automatically. Python restarts are disabled so connected nodes stay connected."
     exec "$LAUNCH_PYTHON" -B -u -m bilibili_ds.web --no-reload --host 127.0.0.1 --port 8000 --open-browser --browser chrome "$@"
   else
-    echo "Opening the fetching node GUI at http://127.0.0.1:8011 or the next free port."
+    echo "Opening the Ascendant fetching node GUI at http://127.0.0.1:8011 or the next free port."
     exec "$LAUNCH_PYTHON" -B -u -m bilibili_ds.node --open-browser --browser chrome "$@"
   fi
 }

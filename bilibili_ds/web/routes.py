@@ -40,7 +40,7 @@ from bilibili_ds.web.serializers import extract_bvid
 
 
 class BilibiliDataScienceHandler(BaseHTTPRequestHandler):
-    server_version = "BilibiliDataScienceWeb/1.0"
+    server_version = "AscendantWeb/1.0"
 
     def log_message(self, format: str, *args: Any) -> None:
         print(f"{self.address_string()} - {format % args}")
