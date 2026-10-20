@@ -2,7 +2,7 @@
 
 import asyncio
 
-from bilibili_api import user
+from bilibili_ds.api import user
 
 from bilibili_ds import accounts, client, videos
 from bilibili_ds.distributed.protocol import wire_video, frequency, integer
@@ -11,16 +11,26 @@ from bilibili_ds.errors import check_detail_rejection
 
 
 async def fetch_unit(unit, cookie, rate, canceled, progress):
+    from bilibili_ds.fetch_context import REQUEST_DELAY, CANCELED
     payload = unit['payload']
     if payload.get('request_rate') is not None:
         rate = min(rate, frequency(payload['request_rate']) / integer(payload.get('participants', 1), 'Participating Macs', 21))
+    tokens = [(variable, variable.set(value)) for variable, value in (
+        (REQUEST_DELAY, 1 / rate), (CANCELED, canceled))]
+    try:
+        return await _fetch_unit(unit, cookie, rate, canceled, progress)
+    finally:
+        for variable, token in reversed(tokens):
+            variable.reset(token)
+
+
+async def _fetch_unit(unit, cookie, rate, canceled, progress):
     credential = accounts.credential_from_cookie_header(cookie) if cookie else accounts.credential_from_environment()
     if unit['kind'] == 'selection':
-        from bilibili_ds.fetch_context import PROGRESS_CALLBACK, REQUEST_DELAY, CANCELED
+        from bilibili_ds.fetch_context import PROGRESS_CALLBACK
         from bilibili_ds.web.videos import fetch_selected_video_items
         tokens = [(variable, variable.set(value)) for variable, value in (
-            (PROGRESS_CALLBACK, lambda percent, message: progress(percent if percent is not None else 0, message)),
-            (REQUEST_DELAY, 1 / rate), (CANCELED, canceled))]
+            (PROGRESS_CALLBACK, lambda percent, message: progress(percent if percent is not None else 0, message)),)]
         try:
             rows, label, total, collection = await fetch_selected_video_items(
                 {'action': 'list', 'selection': unit['payload']['selection']},

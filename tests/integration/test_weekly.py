@@ -33,7 +33,7 @@ class WeeklyFetchTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_complete_list_needs_one_fetch_and_keeps_creator_dataset(self):
         result = await weekly.fetch_weekly_analysis({'source': '393'})
-        self.fetch.assert_awaited_once_with(393)
+        self.fetch.assert_awaited_once_with(393, credential=None)
         self.detail.assert_not_awaited()
         self.assertEqual(result['summaries'][0]['mean'], 200)
         self.assertEqual(result['counts']['included'], 2)

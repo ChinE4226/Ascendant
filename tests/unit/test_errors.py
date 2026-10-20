@@ -1,10 +1,9 @@
 """Upstream error codes, recovery advice and response redaction."""
 
 import unittest
-from unittest.mock import AsyncMock, patch
 
 import httpx
-from bilibili_api.exceptions import NetworkException, ResponseCodeException, WbiRetryTimesExceedException
+from bilibili_ds.errors import NetworkException, ResponseCodeException
 
 from bilibili_ds.errors import BilibiliRequestError, check_detail_rejection, public_error_message, request_error_message
 
@@ -25,7 +24,6 @@ class RequestErrorTests(unittest.TestCase):
         self.assertIn('Sign in on the fetching Mac', request_error_message(NetworkException(401, 'secret')))
         self.assertIn('timed out', request_error_message(httpx.ReadTimeout('secret URL')))
         self.assertIn('internet connection', request_error_message(httpx.ConnectError('secret URL')))
-        self.assertIn('WBI request retries', request_error_message(WbiRetryTimesExceedException()))
         self.assertEqual(public_error_message(ValueError('Invalid sample size.')), 'Invalid sample size.')
 
     def test_detail_rejections_retain_codes_and_ignore_invalid_code_types(self):
@@ -38,17 +36,10 @@ class RequestErrorTests(unittest.TestCase):
         for code in ([], {}, True, '412'):
             check_detail_rejection({'detail_error_code': code, 'detail_error_status': code})
 
-
-class SDKRetryTests(unittest.IsolatedAsyncioTestCase):
-    async def test_412_is_not_retried_by_the_installed_sdk(self):
-        from bilibili_api.utils.network import Api
-        for exc in (NetworkException(412, 'private response'), ResponseCodeException(-412, 'Rejected', {})):
-            api = Api(url='https://example.invalid/offline-test', method='GET', wbi=True)
-            with patch.object(api, '_request', new_callable=AsyncMock, side_effect=exc) as request:
-                with self.assertRaises(type(exc)):
-                    await api.request()
-                request.assert_awaited_once()
-
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_untrusted_request_context_is_not_echoed_in_detail_errors(self):
+        with self.assertRaises(BilibiliRequestError) as raised:
+            check_detail_rejection({'detail_error_status': 412,
+                                    'detail_error_operation': 'https://example.com/?token=secret',
+                                    'detail_error_credentials': {'cookie': 'secret'}})
+        self.assertNotIn('secret', str(raised.exception))
+        self.assertNotIn('example.com', str(raised.exception))

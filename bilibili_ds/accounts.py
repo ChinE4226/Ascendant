@@ -6,7 +6,7 @@ from pathlib import Path
 import re
 from typing import Any
 
-from bilibili_api import Credential, user
+from bilibili_ds.api import Credential, user
 
 from bilibili_ds.errors import public_error_message
 from bilibili_ds import config

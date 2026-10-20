@@ -1,0 +1,109 @@
+{
+  "user.info.info": {
+    "url": "https://api.bilibili.com/x/space/wbi/acc/info",
+    "method": "GET",
+    "verify": false,
+    "wbi": true,
+    "wbi2": true,
+    "params": {
+      "mid": "int: uid",
+      "w_webid": "str: w_webid"
+    },
+    "comment": "用户基本信息"
+  },
+  "user.info.video": {
+    "url": "https://api.bilibili.com/x/space/wbi/arc/search",
+    "method": "GET",
+    "verify": false,
+    "wbi": true,
+    "wbi2": true,
+    "params": {
+      "mid": "int: uid",
+      "ps": "const int: 30",
+      "tid": "int: 分区 ID，0 表示全部",
+      "pn": "int: 页码",
+      "keyword": "str: 关键词，可为空",
+      "w_webid": "str: w_webid"
+    },
+    "comment": "搜索用户视频"
+  },
+  "user.info.relation_stat": {
+    "url": "https://api.bilibili.com/x/relation/stat",
+    "method": "GET",
+    "verify": false,
+    "params": {
+      "vmid": "int: uid"
+    },
+    "comment": "获取用户关系信息（关注数，粉丝数，悄悄关注，黑名单数）"
+  },
+  "user.info.my_info": {
+    "url": "https://api.bilibili.com/x/space/myinfo",
+    "method": "GET",
+    "verify": true,
+    "comment": "获取自己的信息"
+  },
+  "user.info.upstat": {
+    "url": "https://api.bilibili.com/x/space/upstat",
+    "method": "GET",
+    "verify": false,
+    "params": {
+      "mid": "int: uid"
+    },
+    "comment": "视频播放量，文章阅读量，总点赞数"
+  },
+  "video.info.info": {
+    "url": "https://api.bilibili.com/x/web-interface/view",
+    "method": "GET",
+    "verify": false,
+    "params": {
+      "aid": "int: av 号",
+      "bvid": "string: BV 号"
+    },
+    "comment": "视频详细信息"
+  },
+  "search.search.web_search_by_type": {
+    "url": "https://api.bilibili.com/x/web-interface/wbi/search/type",
+    "method": "GET",
+    "verify": false,
+    "params": {
+      "keyword": "str: 搜索用的关键字",
+      "search_type": "str: 搜索时限定类型：视频(video)、番剧(media_bangumi)、影视(media_ft)、直播(live)、专栏(article)、话题(topic)、用户(bili_user)",
+      "page": "int: 页码"
+    },
+    "comment": "搜索关键字时限定类型,可以指定排序号"
+  },
+  "rank.info.weekly_details": {
+    "url": "https://api.bilibili.com/x/web-interface/popular/series/one",
+    "method": "GET",
+    "verify": false,
+    "wbi": true,
+    "params": {
+      "number": "int: 第几周",
+      "web_location": "333.934"
+    },
+    "comment": "小破站每周必看一期的详细信息"
+  },
+  "credential.info.valid": {
+    "url": "https://api.bilibili.com/x/web-interface/nav",
+    "method": "GET",
+    "verify": false,
+    "ignore_code": true,
+    "comment": "（本质作用为获取 cookies 信息）如果 code = 0 则 cookies 有效"
+  },
+  "login.qrcode.web.get_qrcode_and_token": {
+    "url": "https://passport.bilibili.com/x/passport-login/web/qrcode/generate?source=main-fe-header",
+    "method": "GET",
+    "verify": false,
+    "comment": "请求二维码及登录密钥"
+  },
+  "login.qrcode.web.get_events": {
+    "url": "https://passport.bilibili.com/x/passport-login/web/qrcode/poll",
+    "method": "GET",
+    "verify": false,
+    "params": {
+      "qrcode_key": "str: 登录密钥",
+      "source": "main-fe-header"
+    },
+    "comment": "获取最新信息"
+  }
+}

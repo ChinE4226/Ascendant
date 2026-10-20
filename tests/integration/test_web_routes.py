@@ -157,14 +157,17 @@ class WebRouteTests(unittest.TestCase):
         self.assertNotIn("selected_uid", json.loads(config.CREATORS_FILE.read_text()))
 
     def test_upstream_412_response_is_safe_and_does_not_replace_loaded_data(self):
-        from bilibili_api.exceptions import NetworkException
+        from bilibili_ds.errors import NetworkException
         original = {'data': 'already loaded dataset'}
-        with patch.object(dataset, 'CURRENT', original), patch.object(routes, 'execute_video_action', new_callable=AsyncMock, side_effect=NetworkException(412, '<html>private-cookie</html>')) as action:
+        failure = NetworkException(412, '<html>private-cookie</html>').with_request_context('creator_videos', 'cookies')
+        with patch.object(dataset, 'CURRENT', original), patch.object(routes, 'execute_video_action', new_callable=AsyncMock, side_effect=failure) as action:
             status, _, body = self.request('/api/video-action', {'action': 'list', 'refresh': True})
             self.assertIs(dataset.CURRENT, original)
         message = json.loads(body)['error']
         self.assertEqual(status, 400)
         self.assertIn('HTTP 412', message)
+        self.assertIn('Request: Creator video list', message)
+        self.assertIn('session cookie supplied (validity not checked)', message)
         self.assertIn('lower collection requests per second', message)
         self.assertNotIn('private-cookie', message)
         action.assert_awaited_once()

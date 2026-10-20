@@ -62,8 +62,8 @@ their pause state and interval when also found by a release watch. Watches and
 observations survive restart. Collection works while the browser is closed, as
 long as the main server and computer remain running.
 
-Each fetch closes its network clients and removes the SDK's session and settings
-cache entries for that operation's event loop. Tracking observations remain in
+Each fetch closes its HTTPX clients and removes the application-owned session
+entries for that operation's event loop. Tracking observations remain in
 SQLite rather than accumulating in the normal RAM dataset. History analysis
 streams the stored observations, retaining only the requested chart window
 (500 points by default, at most 5,000) while calculating the summary over the full

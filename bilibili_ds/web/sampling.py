@@ -6,7 +6,7 @@ import html
 import re
 from zoneinfo import ZoneInfo
 
-from bilibili_api import search
+from bilibili_ds.api import search
 
 from bilibili_ds.errors import public_error_message
 from bilibili_ds import accounts, client, videos
@@ -39,7 +39,7 @@ async def fetch_random_sample(payload, *, snapshot_only=False):
         for page in range(1, (options["pool_size"] + 19) // 20 + 1):
             response = await search.search_by_type(keyword=options["keyword"], search_type=search.SearchObjectType.VIDEO,
                 order_type=search.OrderVideo(options["order"]), page=page, page_size=20,
-                time_start=time_start, time_end=time_end, video_zone_type=options["category_id"])
+                time_start=time_start, time_end=time_end, video_zone_type=options["category_id"], credential=credential)
             pages += 1
             await asyncio.sleep(client.request_delay_seconds())
             candidates = response.get("result") if isinstance(response, dict) else None

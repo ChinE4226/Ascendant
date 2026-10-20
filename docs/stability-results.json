@@ -1,0 +1,1048 @@
+{
+  "baseline": {
+    "rss_bytes": 87375872,
+    "traced_bytes": 161725,
+    "threads": 2,
+    "file_descriptors": 6,
+    "cached_loops": 0
+  },
+  "final": {
+    "rss_bytes": 85032960,
+    "traced_bytes": 226533,
+    "threads": 1,
+    "file_descriptors": 5,
+    "cached_loops": 0
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 6.09,
+      "http_mean_ms": 3.54,
+      "rss_bytes": 87490560,
+      "traced_bytes": 371501,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 2,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 6.27,
+      "http_mean_ms": 3.56,
+      "rss_bytes": 87556096,
+      "traced_bytes": 378801,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 3,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 6.07,
+      "http_mean_ms": 2.99,
+      "rss_bytes": 87654400,
+      "traced_bytes": 385416,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 4,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 6.12,
+      "http_mean_ms": 3.45,
+      "rss_bytes": 87785472,
+      "traced_bytes": 386681,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 5,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.97,
+      "http_mean_ms": 3.18,
+      "rss_bytes": 87785472,
+      "traced_bytes": 389931,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 6,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 6.48,
+      "http_mean_ms": 3.4,
+      "rss_bytes": 87932928,
+      "traced_bytes": 391363,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 7,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.16,
+      "http_mean_ms": 2.56,
+      "rss_bytes": 87932928,
+      "traced_bytes": 393360,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 8,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.83,
+      "http_mean_ms": 2.86,
+      "rss_bytes": 87949312,
+      "traced_bytes": 393992,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 9,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 6.49,
+      "http_mean_ms": 3.33,
+      "rss_bytes": 88064000,
+      "traced_bytes": 395385,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 10,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.65,
+      "http_mean_ms": 1.71,
+      "rss_bytes": 88064000,
+      "traced_bytes": 396694,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 11,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.58,
+      "http_mean_ms": 2.65,
+      "rss_bytes": 88195072,
+      "traced_bytes": 396709,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 12,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.05,
+      "http_mean_ms": 1.94,
+      "rss_bytes": 88195072,
+      "traced_bytes": 397779,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 13,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.98,
+      "http_mean_ms": 3.35,
+      "rss_bytes": 88211456,
+      "traced_bytes": 398684,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 14,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.82,
+      "http_mean_ms": 1.66,
+      "rss_bytes": 88326144,
+      "traced_bytes": 400138,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 15,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.97,
+      "http_mean_ms": 3.06,
+      "rss_bytes": 88326144,
+      "traced_bytes": 400749,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 16,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.32,
+      "http_mean_ms": 1.66,
+      "rss_bytes": 88358912,
+      "traced_bytes": 401276,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 17,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.16,
+      "http_mean_ms": 2.57,
+      "rss_bytes": 88457216,
+      "traced_bytes": 402166,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 18,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.39,
+      "http_mean_ms": 2.0,
+      "rss_bytes": 88489984,
+      "traced_bytes": 402316,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 19,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.88,
+      "http_mean_ms": 2.33,
+      "rss_bytes": 88604672,
+      "traced_bytes": 403483,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 20,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.51,
+      "http_mean_ms": 1.63,
+      "rss_bytes": 88604672,
+      "traced_bytes": 403738,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 21,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.93,
+      "http_mean_ms": 2.57,
+      "rss_bytes": 88735744,
+      "traced_bytes": 404251,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 22,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.57,
+      "http_mean_ms": 2.62,
+      "rss_bytes": 88735744,
+      "traced_bytes": 405490,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 23,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.55,
+      "http_mean_ms": 1.84,
+      "rss_bytes": 88866816,
+      "traced_bytes": 405770,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 24,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.53,
+      "http_mean_ms": 2.1,
+      "rss_bytes": 88883200,
+      "traced_bytes": 406378,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 25,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.95,
+      "http_mean_ms": 3.24,
+      "rss_bytes": 88883200,
+      "traced_bytes": 406852,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 26,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.41,
+      "http_mean_ms": 2.64,
+      "rss_bytes": 88915968,
+      "traced_bytes": 407754,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 27,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.8,
+      "http_mean_ms": 2.02,
+      "rss_bytes": 89014272,
+      "traced_bytes": 408026,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 28,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 2.66,
+      "http_mean_ms": 1.29,
+      "rss_bytes": 89014272,
+      "traced_bytes": 407581,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 29,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 2.02,
+      "http_mean_ms": 0.96,
+      "rss_bytes": 89145344,
+      "traced_bytes": 408627,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 30,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.94,
+      "http_mean_ms": 1.61,
+      "rss_bytes": 89145344,
+      "traced_bytes": 409041,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 31,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.04,
+      "http_mean_ms": 2.25,
+      "rss_bytes": 89178112,
+      "traced_bytes": 409716,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 32,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.13,
+      "http_mean_ms": 1.82,
+      "rss_bytes": 89276416,
+      "traced_bytes": 410652,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 33,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 6.34,
+      "http_mean_ms": 3.25,
+      "rss_bytes": 89276416,
+      "traced_bytes": 411318,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 34,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.46,
+      "http_mean_ms": 1.95,
+      "rss_bytes": 89407488,
+      "traced_bytes": 411066,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 35,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.63,
+      "http_mean_ms": 1.85,
+      "rss_bytes": 89407488,
+      "traced_bytes": 412288,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 36,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.03,
+      "http_mean_ms": 2.15,
+      "rss_bytes": 89538560,
+      "traced_bytes": 413391,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 37,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 5.04,
+      "http_mean_ms": 2.41,
+      "rss_bytes": 89538560,
+      "traced_bytes": 413579,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 38,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.08,
+      "http_mean_ms": 1.67,
+      "rss_bytes": 89554944,
+      "traced_bytes": 413940,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 39,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.41,
+      "http_mean_ms": 2.05,
+      "rss_bytes": 89604096,
+      "traced_bytes": 414384,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 40,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 2.98,
+      "http_mean_ms": 1.36,
+      "rss_bytes": 89653248,
+      "traced_bytes": 415370,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 41,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.59,
+      "http_mean_ms": 1.56,
+      "rss_bytes": 89702400,
+      "traced_bytes": 415450,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 42,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.54,
+      "http_mean_ms": 2.08,
+      "rss_bytes": 83509248,
+      "traced_bytes": 416713,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 43,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.72,
+      "http_mean_ms": 2.09,
+      "rss_bytes": 83820544,
+      "traced_bytes": 417127,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 44,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.73,
+      "http_mean_ms": 1.71,
+      "rss_bytes": 83968000,
+      "traced_bytes": 417334,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 45,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.79,
+      "http_mean_ms": 1.54,
+      "rss_bytes": 83984384,
+      "traced_bytes": 417744,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 46,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.81,
+      "http_mean_ms": 2.07,
+      "rss_bytes": 84131840,
+      "traced_bytes": 419220,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 47,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.52,
+      "http_mean_ms": 1.98,
+      "rss_bytes": 84148224,
+      "traced_bytes": 419468,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 48,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.97,
+      "http_mean_ms": 1.87,
+      "rss_bytes": 84180992,
+      "traced_bytes": 419540,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 49,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.98,
+      "http_mean_ms": 1.75,
+      "rss_bytes": 84279296,
+      "traced_bytes": 420219,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 50,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 8.78,
+      "http_mean_ms": 3.34,
+      "rss_bytes": 84475904,
+      "traced_bytes": 420561,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 51,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.31,
+      "http_mean_ms": 1.53,
+      "rss_bytes": 84606976,
+      "traced_bytes": 421639,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 52,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 2.61,
+      "http_mean_ms": 1.21,
+      "rss_bytes": 84606976,
+      "traced_bytes": 422399,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 53,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.76,
+      "http_mean_ms": 2.1,
+      "rss_bytes": 84639744,
+      "traced_bytes": 422241,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 54,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.31,
+      "http_mean_ms": 1.93,
+      "rss_bytes": 84754432,
+      "traced_bytes": 423102,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 55,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 2.56,
+      "http_mean_ms": 1.24,
+      "rss_bytes": 84754432,
+      "traced_bytes": 423836,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 56,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 1.97,
+      "http_mean_ms": 0.88,
+      "rss_bytes": 84885504,
+      "traced_bytes": 425038,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 57,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 4.5,
+      "http_mean_ms": 2.03,
+      "rss_bytes": 84885504,
+      "traced_bytes": 425706,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 58,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.95,
+      "http_mean_ms": 1.7,
+      "rss_bytes": 84951040,
+      "traced_bytes": 425167,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 59,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 3.52,
+      "http_mean_ms": 1.55,
+      "rss_bytes": 85049344,
+      "traced_bytes": 426351,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    },
+    {
+      "round": 60,
+      "outcomes": {
+        "success": 80,
+        "invalid_response": 80,
+        "http_412": 80,
+        "cancelled": 80,
+        "timeout": 80
+      },
+      "http_p95_ms": 2.35,
+      "http_mean_ms": 1.13,
+      "rss_bytes": 85049344,
+      "traced_bytes": 426687,
+      "threads": 2,
+      "file_descriptors": 6,
+      "cached_loops": 0
+    }
+  ],
+  "measured_transport_operations": 24000,
+  "measured_http_requests": 24000,
+  "sqlite_observations_including_warmup": 6200,
+  "sqlite_integrity": "ok",
+  "elapsed_seconds": 73.52,
+  "all_worker_threads_stopped": true,
+  "all_client_loop_weakrefs_released": true,
+  "initial_open_file_descriptors_with_server": 6,
+  "test_date": "2026-10-19",
+  "scenario": "Offline, 8 workers, 60 measured rounds, 2 warmup rounds, small fixture data"
+}

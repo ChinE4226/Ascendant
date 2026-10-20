@@ -137,7 +137,7 @@ class WebWorkflowTests(unittest.IsolatedAsyncioTestCase):
                 self.assertIsNone(collection['requested'])
 
     async def test_page_two_rejection_preserves_code_counts_and_stops_without_retry(self):
-        from bilibili_api.exceptions import ResponseCodeException
+        from bilibili_ds.errors import ResponseCodeException
         self.paginate(150)
         pages = self.uploader.get_videos.side_effect
         failure = ResponseCodeException(-352, 'Request rejected', {'private_cookie': 'must-not-appear'})

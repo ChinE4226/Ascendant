@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from bilibili_api.login_v2 import QrCodeLogin, QrCodeLoginEvents
+from bilibili_ds.api.login import QrCodeLogin, QrCodeLoginEvents
 
 from bilibili_ds import accounts as account_service, config, storage
 from bilibili_ds.web import state
@@ -54,7 +54,7 @@ async def start_qr_sign_in() -> dict[str, Any]:
     state.QR_LOGIN = QrCodeLogin()
     await state.QR_LOGIN.generate_qrcode()
     config.QRCODE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    state.QR_LOGIN.get_qrcode_picture().to_file(str(config.QRCODE_FILE))
+    state.QR_LOGIN.save_qrcode(config.QRCODE_FILE)
     return {"qr_code_url": "/runtime/qrcode.png", "status": "waiting"}
 
 

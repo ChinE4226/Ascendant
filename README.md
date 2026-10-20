@@ -207,13 +207,19 @@ Fetch failures distinguish Bilibili HTTP status (such as `HTTP 412`) from API co
 (such as `API code -412`), show the affected page/video when available, and provide
 sign-in, connection or pacing guidance. Collection stops on rejection and preserves
 the previously loaded dataset; the app does not automatically repeat the fetch.
-The installed SDK can internally retry WBI signing errors (`-403`), while HTTP 412
-and API `-412` propagate immediately. Video-detail timeouts, network failures and
+The application-owned HTTPX adapter does not retry API rejections, including WBI
+`-403`, HTTP 412 and API `-412`. Video-detail timeouts, network failures and
 server errors stop collection instead of being counted as invalid video metrics.
 Error notices stay visible until
 dismissed or the next action begins. Tracking saves safe failure messages separately
 from observations and waits at least five minutes before retrying that target.
-Raw SDK responses and credentials are excluded from these messages.
+Raw upstream responses and credentials are excluded from these messages.
+Reports identify the actual failed request, including creator-page or navigation
+prerequisites, and whether a session cookie was supplied (without claiming it is
+valid). HTTP status and API code remain separate: `HTTP 200, API code -412` is
+different from `HTTP 412`. A 412 response alone does not establish the exact
+cause or prove a rate limit. Unknown HTTP/API failures stop collection instead
+of silently counting videos as unavailable; a confirmed 404 can still be skipped.
 
 For an offline error-interface check, run
 `python scripts/preview_dashboard.py --simulate-http-error 412` and click
@@ -469,7 +475,7 @@ performance and engagement averages and remain separate from the working dataset
 
 Copy or clone the source project on each fetching Mac. Double-click
 `setup-node.command` once, then `start-node.command`. The node setup installs
-the SDK, HTTP client and their dependencies without Matplotlib; running the node does not import the dashboard
+HTTPX and its dependencies without Matplotlib; running the node does not import the dashboard
 or Matplotlib. Keep each Mac's environment and account files local instead of
 copying `.venv`, `venv`, `.runtime`, or personal `objects/creators.json` contents.
 See [distributed setup and recovery](docs/distributed.md) for the connection steps,
@@ -587,6 +593,8 @@ Run the offline regression suite:
 
 Tests use temporary files and mocked Bilibili responses. HTTP and reload tests
 open temporary localhost ports. They do not sign in or contact Bilibili.
+See [stability checks and measured results](docs/stability-check.md) for the
+repeatable offline resource soak and shutdown regression checks.
 
 With Playwright and Chrome installed, run `node tests/browser/plots.cjs` for
 offline chart interaction, manual-save, PNG-download, and responsive-layout checks.
@@ -665,7 +673,11 @@ Generated runtime files are ignored by Git. Do not commit credentials.
 
 ## API Source and License
 
-Bilibili access uses [bilibili-api-python](https://github.com/Nemo2011/bilibili-api).
+Bilibili access uses the application-owned HTTPX adapter in `bilibili_ds/api/`;
+`bilibili-api-python` is no longer a dependency. The endpoint subset from version
+17.4.1 and its GPL-3.0 license are preserved under
+[`docs/reference/bilibili-api-python-17.4.1/`](docs/reference/bilibili-api-python-17.4.1/README.md).
+See [migration and validation notes](docs/httpx-migration.md) for maintenance and checks.
 Interactive plots use locally bundled [Apache ECharts 5.6.0](https://echarts.apache.org/handbook/en/concepts/axis/).
 Selected Lucide 1.8.0 icons are bundled locally. Upstream licenses and notices
 are in `docs/licenses/`; there is no runtime CDN dependency.

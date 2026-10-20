@@ -6,7 +6,7 @@ import unittest
 import httpx
 from unittest.mock import AsyncMock, Mock, patch
 
-from bilibili_api.exceptions import NetworkException, ResponseCodeException
+from bilibili_ds.errors import NetworkException, ResponseCodeException
 
 from bilibili_ds import tracking, videos
 from bilibili_ds.errors import BilibiliRequestError
@@ -21,13 +21,15 @@ class ErrorReportingTests(unittest.TestCase):
 
     def test_creator_412_reaches_durable_status_with_page_context_and_no_partial_scan(self):
         watch = tracking.create_creator_watch('7', 60, now=fixtures.TIME)
-        failure = NetworkException(412, '<html>private-cookie</html>')
+        failure = NetworkException(412, '<html>private-cookie</html>').with_request_context('creator_page', 'guest')
         uploader = Mock(get_videos=AsyncMock(side_effect=failure))
         with patch.object(service.client, 'configure_bilibili_client'), patch.object(service.client, 'close_bilibili_client', new_callable=AsyncMock) as close, patch.object(service.accounts, 'credential_from_env', return_value=None), patch.object(service.user, 'User', return_value=uploader):
             with self.assertRaisesRegex(ValueError, 'HTTP 412') as error:
                 asyncio.run(service.check_creator(watch['id']))
         message = tracking.get_creator_watch(watch['id'])['last_error']
         self.assertIn('page 1', message)
+        self.assertIn('Request: Creator page access ID', message)
+        self.assertIn('Credentials: guest', message)
         self.assertIn('lower collection requests per second', message)
         self.assertIn('No releases were recorded', message)
         self.assertNotIn('private-cookie', message)
@@ -54,7 +56,7 @@ class ErrorReportingTests(unittest.TestCase):
         self.assertEqual(len(tracking.history(fixtures.BVID)['errors']), 1)
         self.assertNotIn('secret', row['last_error'])
 
-    def test_detail_error_contains_no_raw_sdk_response_and_collection_stops(self):
+    def test_detail_error_contains_no_raw_upstream_response_and_collection_stops(self):
         failure = NetworkException(412, '<html>private-cookie</html>')
         with patch.object(videos.video, 'Video', return_value=Mock(get_info=AsyncMock(side_effect=failure))) as video:
             item = asyncio.run(videos.fetch_video_detail({'bvid': fixtures.BVID}, None))

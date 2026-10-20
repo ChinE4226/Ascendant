@@ -11,7 +11,7 @@ import tempfile
 import unittest
 from unittest.mock import AsyncMock, Mock, patch
 
-from bilibili_api import Credential, user
+from bilibili_ds.api import Credential, user
 
 from bilibili_ds import accounts, client, config, plotting, state, storage, videos
 from bilibili_ds.web import creators, state as web_state, videos as web_videos

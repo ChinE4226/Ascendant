@@ -22,7 +22,7 @@ are created. Queues, pairing credentials and results are kept in process memory.
    Mac's `.venv`, `venv`, `.runtime`, or personal `objects/creators.json` contents.
    Double-click `setup-node.command` once, then `start-node.command`.
    Its GUI opens in Google Chrome at
-   `http://127.0.0.1:8011`. The node installs the SDK, HTTP client and their dependencies;
+   `http://127.0.0.1:8011`. The node installs HTTPX and its dependencies;
    its setup does not install Matplotlib and its runtime does not load the main
    dashboard or chart library.
    If a node is already running, the launcher opens its existing GUI and preserves
@@ -185,10 +185,9 @@ the task and pauses the
 fetching node; there is no protection bypass or automatic retry of rejected
 Bilibili requests.
 Creator-list failures report the page, API code or HTTP status, transport/timeout
-category and count collected before failure. Raw SDK responses are omitted.
+category and count collected before failure. Raw upstream responses are omitted.
 The main error identifies the fetching Mac and keeps the task marked failed;
-the previous working dataset remains available. The SDK may perform its own
-WBI signing retries; exhausting those is reported separately.
+the previous working dataset remains available. The HTTPX adapter does not automatically retry WBI signing rejections.
 
 ## Recovery and limits
 

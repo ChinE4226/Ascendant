@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
-from bilibili_api import user, video
+from bilibili_ds.api import user, video
 
 from bilibili_ds import accounts as account_service, client, selection as video_selection, videos as video_service
 from bilibili_ds.distributions import has_complete_metrics

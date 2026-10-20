@@ -184,8 +184,8 @@ progress are not isolated by browser session; this is not a multi-user service.
 ## Entry Points and Reload
 
 Double-click `setup-main.command` once on macOS to install the main dependencies
-when no working environment exists. `setup-node.command` installs the SDK,
-HTTP client and their dependencies without Matplotlib. Both use a local Python
+when no working environment exists. `setup-node.command` installs HTTPX
+and its dependencies without Matplotlib. Both use a local Python
 environment under `~/Library/Application Support/BilibiliDataScience/.venv`
 and disable pip's download cache; neither builds a distribution archive. Main
 startup may reuse a working legacy checkout environment. Node setup creates its
@@ -379,7 +379,7 @@ restarting Python clears unsaved RAM. `batch.js` builds and polls the queue, whi
 
 Sampling groups Random sample and Weekly popular in local tabs. Random sample
 uses `POST /api/random-sample`; `web/sampling.py` searches video-only candidates
-with the installed SDK, at most `ceil(pool_size / 20)` search pages and at most
+with the application-owned HTTPX adapter, at most `ceil(pool_size / 20)` search pages and at most
 500 candidate entries. Every unique BVID gets paced detail enrichment; duplicate
 entries need no repeated detail request. `sampling.py` rejects incomplete metrics,
 applies inclusive metric boundaries and Beijing-time publication dates, and uses
@@ -394,7 +394,7 @@ results remain in the browser when navigating; a failed request retains the old
 report. No new dataset, cache or report files are created.
 
 Weekly popular uses `POST /api/weekly-analysis` with an issue number or a validated
-Bilibili weekly-page URL. `web/weekly.py` calls the installed library's weekly API;
+Bilibili weekly-page URL. `web/weekly.py` calls the weekly endpoint through the HTTPX adapter;
 it never requests an arbitrary user-provided URL. Complete list metrics avoid
 per-video requests; incomplete entries use the existing paced detail fetcher.
 It shares the video-operation lock but does not modify `dataset.CURRENT`.

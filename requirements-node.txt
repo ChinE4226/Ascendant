@@ -1,3 +1,2 @@
 # Fetching nodes do not need the dashboard's Matplotlib dependency.
-bilibili-api-python==17.4.1
 httpx==0.28.1

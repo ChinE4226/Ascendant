@@ -6,7 +6,7 @@ import asyncio
 from datetime import datetime
 from threading import Event, Lock, Thread
 
-from bilibili_api import video, user
+from bilibili_ds.api import video, user
 
 from bilibili_ds import accounts, client, tracking, videos
 from bilibili_ds.web import dataset
@@ -142,16 +142,34 @@ class TrackingWorker:
         if self.thread.is_alive():
             self.thread.join(timeout=25)
 
+    async def collect_until_stopped(self, operation):
+        """Cancel active I/O on shutdown so service finally blocks release locks."""
+        task = asyncio.create_task(operation)
+        try:
+            while not task.done():
+                if self.stopped.is_set():
+                    task.cancel()
+                    await asyncio.gather(task, return_exceptions=True)
+                    return
+                await asyncio.wait((task,), timeout=.1)
+            return await task
+        finally:
+            if not task.done():
+                task.cancel()
+                await asyncio.gather(task, return_exceptions=True)
+
     def collect_due(self):
+        if self.stopped.is_set():
+            return
         row = tracking.due_tracker()
         watch = tracking.due_creator_watch()
         if row is None and watch is None:
             return
         try:
             if watch is not None and (row is None or watch['next_check_at'] <= row['next_check_at']):
-                asyncio.run(check_creator(watch['id'], scheduled=True))
+                asyncio.run(self.collect_until_stopped(check_creator(watch['id'], scheduled=True)))
             else:
-                asyncio.run(capture_observation(row['bvid'], tracker_id=row['id'], source='scheduled'))
+                asyncio.run(self.collect_until_stopped(capture_observation(row['bvid'], tracker_id=row['id'], source='scheduled')))
         except CollectionBusy:
             pass  # Keep the original due time; this is not a failed observation.
         except ValueError:

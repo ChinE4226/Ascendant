@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 import re
 from urllib.parse import parse_qs, urlparse
 
-from bilibili_api import hot
+from bilibili_ds.api import hot
 
 from bilibili_ds.errors import public_error_message
 from bilibili_ds import accounts, client, videos
@@ -45,7 +45,7 @@ async def fetch_weekly_analysis(payload, *, snapshot_only=False):
         credential = accounts.credential_from_env()
         client.configure_bilibili_client()
         configured = True
-        response = await hot.get_weekly_hot_videos(number)
+        response = await hot.get_weekly_hot_videos(number, credential=credential)
         await asyncio.sleep(client.request_delay_seconds())
         rows = response.get("list") if isinstance(response, dict) else None
         if not isinstance(rows, list) or any(not isinstance(item, dict) for item in rows):

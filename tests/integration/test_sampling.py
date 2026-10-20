@@ -68,7 +68,7 @@ class SampleFetchTests(unittest.IsolatedAsyncioTestCase):
         self.search.assert_awaited_once()
         self.assertEqual(result['sampling']['shortfall'], 5)
 
-    async def test_date_end_is_advanced_for_sdk_and_category_is_forwarded(self):
+    async def test_date_end_is_advanced_for_api_and_category_is_forwarded(self):
         self.search.return_value = {'result': []}
         await sampling.fetch_random_sample(self.payload(published_start='2026-10-01', published_end='2026-10-01', category_id='17'))
         params = self.search.call_args.kwargs

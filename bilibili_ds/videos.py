@@ -3,13 +3,13 @@
 from typing import Any
 
 import httpx
-from bilibili_api import Credential, video
-from bilibili_ds.errors import BilibiliRequestError, integer_code, request_error_message
+from bilibili_ds.api import Credential, video
+from bilibili_ds.errors import BilibiliRequestError, InvalidResponseError, integer_code, request_error_message
 
 
 async def fetch_creator_video_page(uploader, *, pn, ps, order, collected=None,
                                   requested=None, item_kind='valid videos'):
-    """Keep useful failure details without exposing the SDK's raw response."""
+    """Keep useful failure details without exposing the upstream response."""
     try:
         return await uploader.get_videos(pn=pn, ps=ps, order=order)
     except Exception as exc:
@@ -44,10 +44,16 @@ async def fetch_video_detail(item: dict[str, Any], credential: Credential | None
         enriched["detail_error"] = request_error_message(exc)
         enriched["detail_error_code"] = integer_code(getattr(exc, "code", None))
         enriched["detail_error_status"] = integer_code(getattr(exc, "status", None))
+        enriched['detail_error_operation'] = getattr(exc, 'operation', None)
+        enriched['detail_error_credentials'] = getattr(exc, 'credential_mode', None)
         if isinstance(exc, (TimeoutError, httpx.TimeoutException)):
             enriched['detail_error_kind'] = 'timeout'
         elif isinstance(exc, httpx.TransportError):
             enriched['detail_error_kind'] = 'network'
+        elif isinstance(exc, InvalidResponseError):
+            enriched['detail_error_kind'] = 'invalid_response'
+        elif getattr(exc, 'kind', None) in ('timeout', 'network'):
+            enriched['detail_error_kind'] = exc.kind
         return enriched
 
     stat = info.get("stat") if isinstance(info.get("stat"), dict) else {}

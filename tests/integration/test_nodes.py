@@ -206,7 +206,7 @@ class NodeHTTPTests(unittest.TestCase):
 
     def test_remote_page_error_reaches_main_and_preserves_previous_dataset(self):
         from unittest.mock import Mock
-        from bilibili_api.exceptions import ResponseCodeException
+        from bilibili_ds.errors import ResponseCodeException
         from bilibili_ds.videos import fetch_creator_video_page
         creator = {'uid': '42', 'name': 'Fixture Creator'}
         self.stack.enter_context(patch.object(distributed_dataset, 'selected_creator', return_value=creator))

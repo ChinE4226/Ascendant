@@ -78,7 +78,7 @@ dependencies_ready() {
 import importlib.util
 import sys
 
-modules = ['bilibili_api', 'httpx']
+modules = ['httpx']
 if sys.argv[1] == 'main':
     modules += ['matplotlib', 'qrcode', 'PIL']
 missing = [name for name in modules if importlib.util.find_spec(name) is None]

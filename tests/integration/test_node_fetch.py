@@ -30,12 +30,17 @@ class NodeFetchTests(unittest.IsolatedAsyncioTestCase):
         self.close.assert_awaited_once()
 
     async def test_dataset_pacing_applies_to_nodes_without_exceeding_local_cap(self):
+        from bilibili_ds.fetch_context import REQUEST_DELAY
         for requested, participants, cap, expected_delay in ((.5, 1, 1, 2), (4, 2, 1, 1), (.1, 2, 1, 20)):
             self.detail.reset_mock()
-            self.detail.return_value = item(0)
+            async def detail(*args):
+                self.assertEqual(REQUEST_DELAY.get(), expected_delay)
+                return item(0)
+            self.detail.side_effect = detail
             unit = {'kind': 'videos', 'payload': {'bvids': [bvid(0)], 'request_rate': requested, 'participants': participants}}
             await fetch.fetch_unit(unit, '', cap, Event(), self.progress)
             fetch.asyncio.sleep.assert_awaited_with(expected_delay)
+            self.assertIsNone(REQUEST_DELAY.get())
 
     async def test_creator_skips_invalid_to_reach_the_requested_valid_count(self):
         uploader = Mock()
@@ -76,8 +81,8 @@ class NodeFetchTests(unittest.IsolatedAsyncioTestCase):
         self.detail.assert_awaited_once()
         self.close.assert_awaited_once()
 
-    async def test_sdk_http_status_is_preserved_by_the_shared_fetcher(self):
-        from bilibili_api.exceptions import NetworkException
+    async def test_http_status_is_preserved_by_the_shared_fetcher(self):
+        from bilibili_ds.errors import NetworkException
         with patch.object(fetch.videos.video, 'Video', return_value=Mock(get_info=AsyncMock(side_effect=NetworkException(429, 'Too many requests')))):
             result = await self.original_detail({'bvid': 'BV1xx411c7mD'}, None)
         self.assertEqual(result['detail_error_status'], 429)
@@ -105,7 +110,7 @@ class NodeFetchTests(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(len(result['items']), count)
 
     async def test_creator_page_http_error_reaches_node_failure_without_raw_response(self):
-        from bilibili_api.exceptions import NetworkException
+        from bilibili_ds.errors import NetworkException
         failure = NetworkException(429, '<html>private response contents</html>')
         uploader = Mock(get_videos=AsyncMock(side_effect=[{'page': {'count': 100}},
             {'list': {'vlist': [{'bvid': bvid(i)} for i in range(30)]}}, failure]))
