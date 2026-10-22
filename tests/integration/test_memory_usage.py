@@ -5,8 +5,8 @@ from contextlib import ExitStack
 import unittest
 from unittest.mock import patch
 
-from bilibili_ds.web import dataset, memory, missions, plots
-from bilibili_ds.distributed.coordinator import Coordinator
+from ascendant.web import dataset, memory, missions, plots
+from ascendant.distributed.coordinator import Coordinator
 
 
 class MemoryUsageTests(unittest.TestCase):

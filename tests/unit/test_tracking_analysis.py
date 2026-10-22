@@ -3,7 +3,7 @@
 from datetime import datetime, timedelta, timezone
 import tracemalloc
 import unittest
-from bilibili_ds.tracking_analysis import analyse_observations
+from ascendant.tracking_analysis import analyse_observations
 
 
 def row(identity, hour, value):

@@ -7,8 +7,8 @@ from copy import deepcopy
 import unittest
 from unittest.mock import AsyncMock, patch
 
-from bilibili_ds import tracking
-from bilibili_ds.web import actions, creators, dataset, missions, plots, snapshots, state
+from ascendant import tracking
+from ascendant.web import actions, creators, dataset, missions, plots, snapshots, state
 from tests.integration import test_tracking as fixtures
 
 

@@ -98,7 +98,7 @@ elif '-m' in args and args[args.index('-m') + 1] == 'pip':
                 self.assertTrue(all(call["bytecode"] == "1" for call in calls))
                 launch = calls[-1]["args"]
                 self.assertEqual(launch[-len(args):], list(args))
-                self.assertIn("bilibili_ds.web" if mode == "main" else "bilibili_ds.node", launch)
+                self.assertIn("ascendant.web" if mode == "main" else "ascendant.node", launch)
                 self.assertIn("--open-browser", launch)
                 self.assertEqual(launch[launch.index("--browser") + 1], "chrome")
                 if mode == "main":
@@ -163,7 +163,7 @@ elif '-m' in args and args[args.index('-m') + 1] == 'pip':
                 self.assertIn(f"setup-{mode}.command", result.stderr)
                 self.assertEqual(self.install_calls(), [])
                 self.assertFalse((self.root / ".venv").exists())
-                self.assertFalse(any("bilibili_ds.web" in call["args"] or "bilibili_ds.node" in call["args"]
+                self.assertFalse(any("ascendant.web" in call["args"] or "ascendant.node" in call["args"]
                                      for call in self.calls()))
 
     def test_old_project_python_is_reported_without_replacing_the_environment(self):

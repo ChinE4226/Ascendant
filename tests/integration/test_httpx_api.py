@@ -11,13 +11,13 @@ from urllib.parse import urlencode
 
 import httpx
 
-from bilibili_ds import client, videos
-from bilibili_ds.api import Credential, hot, search, user, video
-from bilibili_ds.api.credentials import NAV_URL
-from bilibili_ds.api.login import QrCodeLogin, QrCodeLoginEvents
-from bilibili_ds.api.signing import mixin_key, sign_params
-from bilibili_ds.errors import BilibiliRequestError, InvalidResponseError, check_detail_rejection
-from bilibili_ds.fetch_context import REQUEST_DELAY
+from ascendant import client, videos
+from ascendant.api import Credential, hot, search, user, video
+from ascendant.api.credentials import NAV_URL
+from ascendant.api.login import QrCodeLogin, QrCodeLoginEvents
+from ascendant.api.signing import mixin_key, sign_params
+from ascendant.errors import BilibiliRequestError, InvalidResponseError, check_detail_rejection
+from ascendant.fetch_context import REQUEST_DELAY
 
 IMG = '7cd084941338484aae1ad9425b84077c'
 SUB = '4932caff0ff746eab6f01bf08b70ac45'

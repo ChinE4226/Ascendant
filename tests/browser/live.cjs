@@ -9,7 +9,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const openPanel = require('./workspace.cjs');
 const original = path.resolve(__dirname, '../..');
 const root = fs.mkdtempSync(path.join(os.tmpdir(), 'bilibili-live-'));
-for (const name of ['bilibili_ds', 'static', 'templates']) fs.cpSync(path.join(original, name), path.join(root, name), {
+for (const name of ['ascendant', 'static', 'templates']) fs.cpSync(path.join(original, name), path.join(root, name), {
   recursive: true, filter: source => !source.includes('__pycache__') && !source.endsWith('.pyc') && !source.endsWith('.DS_Store')
 });
 fs.mkdirSync(path.join(root, 'scripts'));
@@ -112,7 +112,7 @@ server.stderr.on('data', data => log += data);
     await page.locator('h1').filter({ hasText: 'Live HTML update verified' }).waitFor();
     await settled();
     assert.equal(navigations, 5);
-    fs.appendFileSync(path.join(root, 'bilibili_ds/config.py'), '\n# Stable Python update.\n');
+    fs.appendFileSync(path.join(root, 'ascendant/config.py'), '\n# Stable Python update.\n');
     await page.locator('#code-update-status').filter({ hasText: 'Backend code changed' }).waitFor();
     assert.equal((await version()).token, first.token, 'Stable main never restarts Python on edits');
     assert.ok(errors.every(message => /Unexpected token/.test(message)), `Unexpected errors: ${errors.join('; ')}`);

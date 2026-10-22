@@ -3,8 +3,8 @@
 from datetime import datetime
 import unittest
 
-from bilibili_ds import accounts, analysis, plotting, selection
-from bilibili_ds.web.creators import normalize_web_creator
+from ascendant import accounts, analysis, plotting, selection
+from ascendant.web.creators import normalize_web_creator
 
 
 class CalculationTests(unittest.TestCase):

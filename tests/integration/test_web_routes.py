@@ -10,9 +10,9 @@ from unittest.mock import AsyncMock, patch
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
-from bilibili_ds import config, state as settings
-from bilibili_ds.web import assets, plots, routes, state, dataset, missions
-from bilibili_ds.web.server import DashboardHTTPServer
+from ascendant import config, state as settings
+from ascendant.web import assets, plots, routes, state, dataset, missions
+from ascendant.web.server import DashboardHTTPServer
 
 
 class QuietHandler(routes.BilibiliDataScienceHandler):
@@ -136,8 +136,8 @@ class WebRouteTests(unittest.TestCase):
             self.assertEqual(json.loads(self.request('/api/missions')[2])['missions'],[])
 
     def test_static_and_private_path_rejections(self):
-        for path in ("/static/../README.md", "/static/%2e%2e/bilibili_ds/config.py", "/static/%2fetc/passwd",
-                     "/static/missing.js", "/static/", "/static/.DS_Store", "/.runtime/bilibili_credential.json", "/bilibili_ds/config.py"):
+        for path in ("/static/../README.md", "/static/%2e%2e/ascendant/config.py", "/static/%2fetc/passwd",
+                     "/static/missing.js", "/static/", "/static/.DS_Store", "/.runtime/bilibili_credential.json", "/ascendant/config.py"):
             with self.subTest(path=path):
                 self.assertEqual(self.request(path)[0], 404)
                 self.assertEqual(self.request(path, method="HEAD")[0], 404)
@@ -157,7 +157,7 @@ class WebRouteTests(unittest.TestCase):
         self.assertNotIn("selected_uid", json.loads(config.CREATORS_FILE.read_text()))
 
     def test_upstream_412_response_is_safe_and_does_not_replace_loaded_data(self):
-        from bilibili_ds.errors import NetworkException
+        from ascendant.errors import NetworkException
         original = {'data': 'already loaded dataset'}
         failure = NetworkException(412, '<html>private-cookie</html>').with_request_context('creator_videos', 'cookies')
         with patch.object(dataset, 'CURRENT', original), patch.object(routes, 'execute_video_action', new_callable=AsyncMock, side_effect=failure) as action:
@@ -194,7 +194,7 @@ class WebRouteTests(unittest.TestCase):
         self.assertEqual(json.loads(body), {**snapshot, 'running': True})
 
     def test_tracking_routes_snapshot_history_export_and_backup(self):
-        from bilibili_ds.web import tracking as service
+        from ascendant.web import tracking as service
         payload = {'video': 'BV1xx411c7mD', 'interval_seconds': 600}
         status, _, body = self.request('/api/tracking/trackers', payload)
         self.assertEqual(status, 200)
@@ -234,7 +234,7 @@ class WebRouteTests(unittest.TestCase):
             self.assertEqual(self.request('/api/random-sample', {})[0], 400)
 
     def test_creator_discovery_tracking_check_and_analysis_routes(self):
-        from bilibili_ds.web import tracking as service
+        from ascendant.web import tracking as service
         from tests.integration.test_tracking import info, BVID
         status, _, body = self.request('/api/tracking/creators', {'creator': 'https://space.bilibili.com/7', 'video_interval_seconds': 120})
         self.assertEqual(status, 200)

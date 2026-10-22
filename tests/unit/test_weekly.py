@@ -1,7 +1,7 @@
 """Known weekly cohort averages, eligibility, and duplicates."""
 import unittest
 
-from bilibili_ds.weekly import summarize_weekly_items
+from ascendant.weekly import summarize_weekly_items
 
 
 def weekly_video(bvid, views, likes, creator=1):

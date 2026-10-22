@@ -9,9 +9,9 @@ import tempfile
 import unittest
 from unittest.mock import AsyncMock, patch
 
-from bilibili_ds import config, tracking
-from bilibili_ds.web import dataset
-from bilibili_ds.web import tracking as service
+from ascendant import config, tracking
+from ascendant.web import dataset
+from ascendant.web import tracking as service
 
 BVID = 'BV1xx411c7mD'
 OTHER = 'BV1xx411c7mE'

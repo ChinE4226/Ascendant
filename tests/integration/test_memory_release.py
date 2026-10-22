@@ -5,8 +5,8 @@ from contextlib import ExitStack
 import unittest
 from unittest.mock import AsyncMock, patch
 
-from bilibili_ds import tracking
-from bilibili_ds.web import actions, dataset, plots, snapshots
+from ascendant import tracking
+from ascendant.web import actions, dataset, plots, snapshots
 from tests.integration import test_tracking as fixtures
 
 

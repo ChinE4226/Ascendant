@@ -3,7 +3,7 @@ from contextlib import ExitStack
 import unittest
 from unittest.mock import AsyncMock, patch
 
-from bilibili_ds.web import dataset, weekly
+from ascendant.web import dataset, weekly
 from tests.unit.test_weekly import weekly_video
 
 

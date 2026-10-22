@@ -27,13 +27,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 import httpx
 
-from bilibili_ds import client, config, tracking
-from bilibili_ds.api import Credential
-from bilibili_ds.errors import BilibiliRequestError
-from bilibili_ds.fetch_context import REQUEST_DELAY
-from bilibili_ds.memory import process_memory
-from bilibili_ds.web.routes import BilibiliDataScienceHandler
-from bilibili_ds.web.server import DashboardHTTPServer
+from ascendant import client, config, tracking
+from ascendant.api import Credential
+from ascendant.errors import BilibiliRequestError
+from ascendant.fetch_context import REQUEST_DELAY
+from ascendant.memory import process_memory
+from ascendant.web.routes import BilibiliDataScienceHandler
+from ascendant.web.server import DashboardHTTPServer
 
 INFO = {'bvid': 'BV1xx411c7mD', 'title': 'Offline stability fixture', 'pubdate': 1791417600,
         'owner': {'mid': 7, 'name': 'Fixture'}, 'stat': {'view': 100, 'like': 10}}

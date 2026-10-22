@@ -138,8 +138,8 @@ cache disabled. They do not build archives or copy datasets. To start from a
 terminal instead of double-clicking, run:
 
 ```sh
-.venv/bin/python -B -m bilibili_ds.web --no-reload
-.venv/bin/python -B -m bilibili_ds.node --open-browser
+.venv/bin/python -B -m ascendant.web --no-reload
+.venv/bin/python -B -m ascendant.node --open-browser
 ```
 
 Keep each Terminal window open; press **Control+C** in it to stop that app.

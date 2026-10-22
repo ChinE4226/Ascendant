@@ -4,8 +4,8 @@ import sys
 import unittest
 from unittest.mock import patch
 
-from bilibili_ds import memory
-from bilibili_ds.web.memory import _object_size, SAMPLE_ROWS
+from ascendant import memory
+from ascendant.web.memory import _object_size, SAMPLE_ROWS
 
 
 class MemoryMeasurementTests(unittest.TestCase):

@@ -5,9 +5,9 @@ from contextlib import ExitStack
 import unittest
 from unittest.mock import patch
 
-from bilibili_ds import plotting, indicators
+from ascendant import plotting, indicators
 import math
-from bilibili_ds.web import plots
+from ascendant.web import plots
 
 
 class PlottingTests(unittest.TestCase):

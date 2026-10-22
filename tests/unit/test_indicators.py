@@ -1,6 +1,6 @@
 """Indicator math, warm-up windows, and zero-baseline behavior."""
 import unittest
-from bilibili_ds.indicators import exponential_average, rolling_median, relative_performance
+from ascendant.indicators import exponential_average, rolling_median, relative_performance
 
 
 class IndicatorTests(unittest.TestCase):

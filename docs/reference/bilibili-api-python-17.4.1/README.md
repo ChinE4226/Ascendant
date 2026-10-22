@@ -12,7 +12,7 @@ migration on 2026-10-19.
 The replacement's WBI key permutation and request contracts were informed by
 `utils/network.py`, `utils/user_render_data.py`, `user.py`, `video.py`, `search.py`,
 `hot.py`, and `login_v2.py` in that version. Ascendant's own implementation lives in
-`bilibili_ds/api/` and `bilibili_ds/client.py`, under the project's GPL-3.0 license.
+`ascendant/api/` and `ascendant/client.py`, under the project's GPL-3.0 license.
 No SDK executable modules are vendored. These files are documentation only and
 are not loaded at runtime. No account cookies, tokens or response bodies are
 included in this reference.

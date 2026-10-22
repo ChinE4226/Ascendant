@@ -4,7 +4,7 @@ from datetime import datetime
 import unittest
 from zoneinfo import ZoneInfo
 
-from bilibili_ds.sampling import parse_sample_options, sample_candidates
+from ascendant.sampling import parse_sample_options, sample_candidates
 from tests.unit.test_weekly import weekly_video
 
 

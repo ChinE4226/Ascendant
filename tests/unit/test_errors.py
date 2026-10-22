@@ -3,9 +3,9 @@
 import unittest
 
 import httpx
-from bilibili_ds.errors import NetworkException, ResponseCodeException
+from ascendant.errors import NetworkException, ResponseCodeException
 
-from bilibili_ds.errors import BilibiliRequestError, check_detail_rejection, public_error_message, request_error_message
+from ascendant.errors import BilibiliRequestError, check_detail_rejection, public_error_message, request_error_message
 
 
 class RequestErrorTests(unittest.TestCase):

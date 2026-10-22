@@ -5,8 +5,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from bilibili_ds import config
-from bilibili_ds.web import assets, serializers, state
+from ascendant import config
+from ascendant.web import assets, serializers, state
 
 
 class WebAssetTests(unittest.TestCase):

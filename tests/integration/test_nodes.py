@@ -10,13 +10,13 @@ from unittest.mock import AsyncMock, patch
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
-from bilibili_ds.distributed.coordinator import Coordinator
-from bilibili_ds.distributed.worker import Worker
-from bilibili_ds.node.server import NodeGUIHandler, NodeGUIServer
-from bilibili_ds.web import nodes
-from bilibili_ds.web import distributed_dataset, dataset, actions
-from bilibili_ds.web.routes import BilibiliDataScienceHandler
-from bilibili_ds.web.server import DashboardHTTPServer
+from ascendant.distributed.coordinator import Coordinator
+from ascendant.distributed.worker import Worker
+from ascendant.node.server import NodeGUIHandler, NodeGUIServer
+from ascendant.web import nodes
+from ascendant.web import distributed_dataset, dataset, actions
+from ascendant.web.routes import BilibiliDataScienceHandler
+from ascendant.web.server import DashboardHTTPServer
 from tests.unit.test_nodes import bvid, item
 
 
@@ -97,7 +97,7 @@ class NodeHTTPTests(unittest.TestCase):
         self.assertEqual(report['summaries'][0]['total'], sum(i * 100 for i in range(42) if i != 3))
 
     def test_node_process_memory_reaches_gui_coordinator_and_main_dashboard(self):
-        from bilibili_ds.web import memory
+        from ascendant.web import memory
         base = self.gui_urls[0]
         code = self.core.new_pairing()['code']
         self.assertEqual(self.request(base, '/api/connect', {'name': 'Memory node', 'url': self.listener, 'code': code, 'rate': 1})[0], 200)
@@ -206,8 +206,8 @@ class NodeHTTPTests(unittest.TestCase):
 
     def test_remote_page_error_reaches_main_and_preserves_previous_dataset(self):
         from unittest.mock import Mock
-        from bilibili_ds.errors import ResponseCodeException
-        from bilibili_ds.videos import fetch_creator_video_page
+        from ascendant.errors import ResponseCodeException
+        from ascendant.videos import fetch_creator_video_page
         creator = {'uid': '42', 'name': 'Fixture Creator'}
         self.stack.enter_context(patch.object(distributed_dataset, 'selected_creator', return_value=creator))
         self.stack.enter_context(patch.object(dataset, 'selected_creator', return_value=creator))

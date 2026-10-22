@@ -2,7 +2,7 @@
 from contextlib import ExitStack
 import unittest
 from unittest.mock import AsyncMock, patch
-from bilibili_ds.web import actions, dataset
+from ascendant.web import actions, dataset
 
 
 class DatasetTests(unittest.IsolatedAsyncioTestCase):

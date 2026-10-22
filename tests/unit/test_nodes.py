@@ -4,11 +4,11 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import AsyncMock, Mock, patch
 
-from bilibili_ds.distributed.coordinator import Coordinator
-from bilibili_ds.distributed.protocol import ProtocolError, coordinator_url, frequency, video_ids
-from bilibili_ds.distributed.worker import Worker
-from bilibili_ds.distributed import worker as worker_module
-from bilibili_ds.web import distributed_dataset
+from ascendant.distributed.coordinator import Coordinator
+from ascendant.distributed.protocol import ProtocolError, coordinator_url, frequency, video_ids
+from ascendant.distributed.worker import Worker
+from ascendant.distributed import worker as worker_module
+from ascendant.web import distributed_dataset
 
 
 class CableTransportTests(unittest.TestCase):
@@ -96,7 +96,7 @@ class CoordinatorTests(unittest.TestCase):
         task = self.task()
         address = {'url': 'http://169.254.57.204:8010', 'interface': 'bridge0',
                    'kind': 'thunderbolt', 'label': 'Thunderbolt Bridge'}
-        with patch('bilibili_ds.distributed.coordinator.connection_addresses', return_value=[address]):
+        with patch('ascendant.distributed.coordinator.connection_addresses', return_value=[address]):
             snapshot = self.core.snapshot()
         self.assertEqual(snapshot['addresses'], [address])
         self.assertEqual(snapshot['urls'], [address['url']])

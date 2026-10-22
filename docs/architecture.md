@@ -8,7 +8,7 @@ JavaScript build step or additional web framework is required.
 
 ```text
 Ascendant/
-    bilibili_ds/             Shared Python application code
+    ascendant/             Shared Python application code
         config.py           Project paths and defaults
         state.py            Process-wide request rate
         storage.py          JSON persistence helpers
@@ -200,13 +200,13 @@ Repeating the node launcher opens the existing node GUI without resetting its
 connection or task. An unrelated app on the requested port causes startup to try
 the next free port, with the actual address printed in Terminal.
 
-`start-web.command`, `python -m bilibili_ds.web`, and `python web_server.py` start
+`start-web.command`, `python -m ascendant.web`, and `python web_server.py` start
 the same dashboard with development reload enabled. Press Control+C in the
 launcher window to stop both the server and watcher.
 
 The web entry point starts the supervisor before importing application modules,
 so a syntax error in application code does not kill the watcher. It watches
-Python under `bilibili_ds/` and the root compatibility scripts.
+Python under `ascendant/` and the root compatibility scripts.
 Each worker uses a fresh bytecode-cache namespace and disables cache writes.
 
 `web/live.py` caches metadata-only source signatures separately for CSS, HTML/JS
@@ -239,7 +239,7 @@ recomputing windows. Save requests include `ma_periods`; the server validates an
 normalizes these, and caches exports by axis mode, MA windows, and additional
 `indicators`, value mode, anomaly markers and chart style. The health response exposes
 `chart_export_version: 2`, preventing an older running backend from silently saving
-a raw chart when the browser displays an index. `bilibili_ds/indicators.py` and `static/js/indicators.js` implement the
+a raw chart when the browser displays an index. `ascendant/indicators.py` and `static/js/indicators.js` implement the
 same pure trailing calculations: seeded EMA, full-window median, and relative
 performance against the preceding 20 observations. Zero baselines produce gaps.
 Relative20 uses a separate ECharts instance with bidirectional zoom synchronization;
@@ -263,7 +263,7 @@ The two workflows have separate pages, browser modules, service modules, API
 namespaces and processing algorithms, while sharing one SQLite file. See
 [`tracking-workflow.md`](tracking-workflow.md) for behavior and formulas.
 
-`bilibili_ds/tracking.py` owns transactions and additive schema migrations:
+`ascendant/tracking.py` owns transactions and additive schema migrations:
 `tracking_schema.sql` (v1), `tracking_collections.sql` (v2),
 `tracking_workflow.sql` (v3), and `tracking_revision.sql` (v4). The revision table
 stores a database identity and counter. Triggers increment it transactionally for

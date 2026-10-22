@@ -17,7 +17,7 @@ from types import SimpleNamespace
 import unittest
 from urllib.request import Request, urlopen
 
-from bilibili_ds.node.server import NodeGUIHandler, NodeGUIServer
+from ascendant.node.server import NodeGUIHandler, NodeGUIServer
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -32,10 +32,10 @@ class MacLauncherIntegrationTests(unittest.TestCase):
         for name in ("start-main.command", "start-node.command"):
             shutil.copy2(ROOT / name, root / name)
         shutil.copy2(ROOT / "scripts/mac_launcher.sh", root / "scripts/mac_launcher.sh")
-        for name in ("bilibili_ds", "static", "templates"):
+        for name in ("ascendant", "static", "templates"):
             shutil.copytree(ROOT / name, root / name, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
         # These process-lifecycle tests run offline, without a physical cable.
-        network = root / 'bilibili_ds/distributed/network.py'
+        network = root / 'ascendant/distributed/network.py'
         with network.open('a') as fixture:
             fixture.write("\n# Offline integration fixture: use loopback for the connection service.\ndef thunderbolt_address():\n    return '127.0.0.1'\n")
         (root / "objects").mkdir()
@@ -147,7 +147,7 @@ class MacLauncherIntegrationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix="bilibili mac import ") as directory:
             root = self.source_copy(directory)
             result = subprocess.run([sys.executable, "-B", "-c",
-                                     "import sys; import bilibili_ds.node.__main__; import bilibili_ds.web.videos; "
+                                     "import sys; import ascendant.node.__main__; import ascendant.web.videos; "
                                      "assert not any(name == 'matplotlib' or name.startswith('matplotlib.') for name in sys.modules); "
                                      "print('Node imports do not need Matplotlib')"],
                                     cwd=root, env=self.environment(root), capture_output=True,

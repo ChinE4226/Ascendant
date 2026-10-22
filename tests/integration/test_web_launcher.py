@@ -32,7 +32,7 @@ class WebLauncherTests(unittest.TestCase):
                 interpreter = root / '.test-env/bin/python'
                 interpreter.write_text('#!/bin/bash\nexec ' + shlex.quote(sys.executable) + ' "$@"\n')
                 interpreter.chmod(0o755)
-                for name in ("bilibili_ds", "static", "templates"):
+                for name in ("ascendant", "static", "templates"):
                     shutil.copytree(ROOT / name, root / name, ignore=shutil.ignore_patterns("__pycache__"))
                 (root / "objects").mkdir()
                 (root / "objects/creators.json").write_text('{"creators": []}')

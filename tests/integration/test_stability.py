@@ -8,9 +8,9 @@ from unittest.mock import patch
 
 import httpx
 
-from bilibili_ds import client, tracking
-from bilibili_ds.web import dataset
-from bilibili_ds.web import tracking as service
+from ascendant import client, tracking
+from ascendant.web import dataset
+from ascendant.web import tracking as service
 from tests.integration import test_tracking as fixtures
 
 

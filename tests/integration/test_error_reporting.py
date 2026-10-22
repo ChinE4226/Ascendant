@@ -6,12 +6,12 @@ import unittest
 import httpx
 from unittest.mock import AsyncMock, Mock, patch
 
-from bilibili_ds.errors import NetworkException, ResponseCodeException
+from ascendant.errors import NetworkException, ResponseCodeException
 
-from bilibili_ds import tracking, videos
-from bilibili_ds.errors import BilibiliRequestError
-from bilibili_ds.web import dataset, state
-from bilibili_ds.web import tracking as service
+from ascendant import tracking, videos
+from ascendant.errors import BilibiliRequestError
+from ascendant.web import dataset, state
+from ascendant.web import tracking as service
 from tests.integration import test_tracking as fixtures
 
 
@@ -63,13 +63,13 @@ class ErrorReportingTests(unittest.TestCase):
         self.assertEqual(item['detail_error_status'], 412)
         self.assertIn('HTTP 412', item['detail_error'])
         self.assertNotIn('private-cookie', item['detail_error'])
-        from bilibili_ds.errors import check_detail_rejection
+        from ascendant.errors import check_detail_rejection
         with self.assertRaisesRegex(BilibiliRequestError, 'HTTP 412'):
             check_detail_rejection(item)
         video.return_value.get_info.assert_awaited_once()
 
     def test_single_lookup_412_keeps_code_in_user_error_and_progress(self):
-        from bilibili_ds.web import videos as web_videos
+        from ascendant.web import videos as web_videos
         with patch.object(web_videos.client, 'configure_bilibili_client'), patch.object(web_videos.client, 'close_bilibili_client', new_callable=AsyncMock) as close, patch.object(web_videos.account_service, 'credential_from_env', return_value=None), patch.object(web_videos.video, 'Video', return_value=Mock(get_info=AsyncMock(side_effect=NetworkException(412, 'private-cookie')))), patch.object(state, 'PROGRESS', {}):
             with self.assertRaisesRegex(BilibiliRequestError, 'HTTP 412') as raised:
                 asyncio.run(web_videos.fetch_single_video(fixtures.BVID))
@@ -80,7 +80,7 @@ class ErrorReportingTests(unittest.TestCase):
             close.assert_awaited_once()
 
     def test_transport_failures_stop_instead_of_being_counted_as_invalid_video_metrics(self):
-        from bilibili_ds.errors import check_detail_rejection
+        from ascendant.errors import check_detail_rejection
         for failure, phrase in ((httpx.ReadTimeout('private-cookie'), 'timed out'),
                                 (httpx.ConnectError('private-cookie'), 'network request failed'),
                                 (NetworkException(503, 'private-cookie'), 'HTTP 503')):

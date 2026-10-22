@@ -11,10 +11,10 @@ import tempfile
 import unittest
 from unittest.mock import AsyncMock, Mock, patch
 
-from bilibili_ds.api import Credential, user
+from ascendant.api import Credential, user
 
-from bilibili_ds import accounts, client, config, plotting, state, storage, videos
-from bilibili_ds.web import creators, state as web_state, videos as web_videos
+from ascendant import accounts, client, config, plotting, state, storage, videos
+from ascendant.web import creators, state as web_state, videos as web_videos
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -77,7 +77,7 @@ class IsolatedFilesTests(unittest.TestCase):
         self.assertEqual(plotting.plt.get_fignums(), [])
 
     def test_web_png_plot_with_dates_and_fallback_labels(self):
-        from bilibili_ds.web.plots import save_web_plot_png
+        from ascendant.web.plots import save_web_plot_png
 
         for labels in (("2026-09-01 12:00:00", "2026-09-02 12:00:00"), ("First", "Second")):
             with self.subTest(labels=labels):
@@ -133,7 +133,7 @@ class EntryPointTests(unittest.TestCase):
     def test_direct_script_from_another_directory(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            shutil.copytree(ROOT / "bilibili_ds", root / "bilibili_ds", ignore=shutil.ignore_patterns("__pycache__"))
+            shutil.copytree(ROOT / "ascendant", root / "ascendant", ignore=shutil.ignore_patterns("__pycache__"))
             shutil.copy2(ROOT / "web_server.py", root / "web_server.py")
             env = {key: value for key, value in os.environ.items() if not key.startswith("BILI_")}
             env.update(MPLCONFIGDIR=str(root / "matplotlib"), XDG_CACHE_HOME=str(root / "cache"))
@@ -147,7 +147,7 @@ class EntryPointTests(unittest.TestCase):
     def test_both_web_launchers_offer_the_same_options(self):
         outputs = []
         for command in ([sys.executable, "web_server.py", "--help"],
-                        [sys.executable, "-m", "bilibili_ds.web", "--help"]):
+                        [sys.executable, "-m", "ascendant.web", "--help"]):
             result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, timeout=10)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertIn("--no-reload", result.stdout)
@@ -156,8 +156,8 @@ class EntryPointTests(unittest.TestCase):
 
     def test_web_imports_shared_modules_without_terminal_dependency(self):
         result = subprocess.run(
-            [sys.executable, "-c", "import bilibili_ds.web.server; import sys; "
-             "assert not any(n == 'bilibili_ds.cli' or n.startswith('bilibili_ds.cli.') for n in sys.modules); "
+            [sys.executable, "-c", "import ascendant.web.server; import sys; "
+             "assert not any(n == 'ascendant.cli' or n.startswith('ascendant.cli.') for n in sys.modules); "
              "assert 'main.main' not in sys.modules"],
             cwd=ROOT, capture_output=True, text=True, timeout=30,
         )

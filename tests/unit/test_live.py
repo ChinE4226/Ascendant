@@ -4,20 +4,20 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from bilibili_ds import config
-from bilibili_ds.web.live import source_versions
+from ascendant import config
+from ascendant.web.live import source_versions
 
 
 class SourceRevisionTests(unittest.TestCase):
     def test_css_ui_python_and_runtime_revisions_are_separate(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            for folder in ('static', 'templates', 'bilibili_ds', '.runtime'):
+            for folder in ('static', 'templates', 'ascendant', '.runtime'):
                 (root / folder).mkdir()
             (root / 'static/app.js').write_text('initial')
             (root / 'static/app.css').write_text('initial')
             (root / 'templates/dashboard.html').write_text('initial')
-            (root / 'bilibili_ds/app.py').write_text('initial')
+            (root / 'ascendant/app.py').write_text('initial')
             with patch.object(config, 'PROJECT_ROOT', root), patch.object(config, 'STATIC_DIR', root / 'static'), patch.object(config, 'TEMPLATES_DIR', root / 'templates'):
                 original = source_versions(fresh=True)
                 (root / '.runtime/private.json').write_text('not public')
@@ -33,5 +33,5 @@ class SourceRevisionTests(unittest.TestCase):
                 self.assertEqual(js['python_revision'], css['python_revision'])
                 (root / 'templates/dashboard.html').unlink()
                 self.assertNotEqual(source_versions(fresh=True)['ui_revision'], js['ui_revision'])
-                (root / 'bilibili_ds/app.py').write_text('Python changed')
+                (root / 'ascendant/app.py').write_text('Python changed')
                 self.assertNotEqual(source_versions(fresh=True)['python_revision'], js['python_revision'])

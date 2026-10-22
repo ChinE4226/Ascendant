@@ -22,7 +22,7 @@ python -m pip install --no-cache-dir -r requirements.txt
 Start the dashboard:
 
 ```sh
-python -B -m bilibili_ds.web --no-reload
+python -B -m ascendant.web --no-reload
 ```
 
 Open the address printed by the server, normally
@@ -58,14 +58,16 @@ An existing working project environment remains usable;
 leave legacy `.venv`, `venv` and `.runtime` folders out of a source-only sync.
 
 The application was previously named Bilibili Data Science. Its repository and
-project folder are now named `Ascendant`. The Python package `bilibili_ds`, launcher
-filenames, and existing `BilibiliDataScience` application support directory retain
-their names for compatibility. The rename requires no data or account migration.
+project folder are named `Ascendant`, and its Python package is `ascendant`.
+External scripts should import `ascendant`; direct module launch commands are
+`python -m ascendant.web` and `python -m ascendant.node`. Launcher filenames and
+the existing `BilibiliDataScience` application support directory retain their
+names for compatibility. The package rename requires no data or account migration.
 
 ## Project Structure
 
 ```text
-bilibili_ds/          Shared Python logic, paths, and settings
+ascendant/          Shared Python logic, paths, and settings
     web/             HTTP routes, web workflows, and development reload
 templates/           Dashboard HTML
 static/
@@ -358,7 +360,7 @@ versioned schema automatically and upgrades existing history without deleting it
 to initialize without starting the dashboard:
 
 ```sh
-python -B -m bilibili_ds.tracking
+python -B -m ascendant.tracking
 ```
 
 ## Mission Queue
@@ -555,7 +557,7 @@ Interface updates keep the Python process, RAM datasets/cohorts and node connect
 Browser-rendered analysis results need running again on the retained data.
 
 Use `start-web.command` for automatic Python restarts too. Saving Python files under
-`bilibili_ds/` or root compatibility scripts restarts the development worker.
+`ascendant/` or root compatibility scripts restarts the development worker.
 This clears its RAM datasets, coordinator state, in-progress requests and QR attempts.
 The supervisor survives Python syntax errors and retries after the next save.
 With `start-main.command`, Python edits show a restart notice and leave the backend
@@ -568,7 +570,7 @@ to get updated counts.
 Disable automatic Python restarts or choose another port with:
 
 ```sh
-python -m bilibili_ds.web --no-reload --port 8010
+python -m ascendant.web --no-reload --port 8010
 ```
 
 The dashboard groups related tools under Explore, Workspace, and Settings.
@@ -673,7 +675,7 @@ Generated runtime files are ignored by Git. Do not commit credentials.
 
 ## API Source and License
 
-Bilibili access uses the application-owned HTTPX adapter in `bilibili_ds/api/`;
+Bilibili access uses the application-owned HTTPX adapter in `ascendant/api/`;
 `bilibili-api-python` is no longer a dependency. The endpoint subset from version
 17.4.1 and its GPL-3.0 license are preserved under
 [`docs/reference/bilibili-api-python-17.4.1/`](docs/reference/bilibili-api-python-17.4.1/README.md).

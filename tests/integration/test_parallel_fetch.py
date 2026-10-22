@@ -7,10 +7,10 @@ from threading import Event
 import unittest
 from unittest.mock import AsyncMock, Mock, patch
 
-from bilibili_ds.distributed.coordinator import Coordinator
-from bilibili_ds.distributed.worker import Worker
-from bilibili_ds.fetch_context import REQUEST_DELAY
-from bilibili_ds.web import parallel, videos, actions, dataset
+from ascendant.distributed.coordinator import Coordinator
+from ascendant.distributed.worker import Worker
+from ascendant.fetch_context import REQUEST_DELAY
+from ascendant.web import parallel, videos, actions, dataset
 from tests.unit.test_nodes import bvid, item
 
 

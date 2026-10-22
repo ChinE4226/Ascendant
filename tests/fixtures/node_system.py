@@ -9,13 +9,13 @@ from threading import Thread
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-from bilibili_ds.distributed.coordinator import COORDINATOR
-from bilibili_ds.distributed.worker import Worker
-from bilibili_ds.node.server import NodeGUIHandler, NodeGUIServer
-from bilibili_ds.web.server import DashboardHTTPServer
+from ascendant.distributed.coordinator import COORDINATOR
+from ascendant.distributed.worker import Worker
+from ascendant.node.server import NodeGUIHandler, NodeGUIServer
+from ascendant.web.server import DashboardHTTPServer
 from scripts.preview_dashboard import PreviewHandler, CREATOR
-from bilibili_ds.web.routes import BilibiliDataScienceHandler
-from bilibili_ds.web import distributed_dataset, dataset, actions
+from ascendant.web.routes import BilibiliDataScienceHandler
+from ascendant.web import distributed_dataset, dataset, actions
 from tests.unit.test_nodes import item
 
 
@@ -56,7 +56,7 @@ actions.fetch_selected_video_items = fake_local_fetch
 
 # Exercise the normal Start button on a deterministic offline loopback link.
 # Production discovers/binds Thunderbolt Bridge instead.
-patch('bilibili_ds.distributed.coordinator.thunderbolt_address', return_value='127.0.0.1').start()
+patch('ascendant.distributed.coordinator.thunderbolt_address', return_value='127.0.0.1').start()
 
 
 class NodePreviewHandler(PreviewHandler):

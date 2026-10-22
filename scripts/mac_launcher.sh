@@ -136,12 +136,12 @@ launch_application() {
     if [ "$development" = 1 ]; then
       echo "Interface changes update automatically; Python edits restart the development server."
       echo "Environment, sign-in and runtime match start-main.command."
-      exec "$LAUNCH_PYTHON" -B -u -m bilibili_ds.web --host 127.0.0.1 --port 8000 --open-browser --browser chrome "$@"
+      exec "$LAUNCH_PYTHON" -B -u -m ascendant.web --host 127.0.0.1 --port 8000 --open-browser --browser chrome "$@"
     fi
     echo "Interface changes update automatically. Python restarts are disabled so connected nodes stay connected."
-    exec "$LAUNCH_PYTHON" -B -u -m bilibili_ds.web --no-reload --host 127.0.0.1 --port 8000 --open-browser --browser chrome "$@"
+    exec "$LAUNCH_PYTHON" -B -u -m ascendant.web --no-reload --host 127.0.0.1 --port 8000 --open-browser --browser chrome "$@"
   else
     echo "Opening the Ascendant fetching node GUI at http://127.0.0.1:8011 or the next free port."
-    exec "$LAUNCH_PYTHON" -B -u -m bilibili_ds.node --open-browser --browser chrome "$@"
+    exec "$LAUNCH_PYTHON" -B -u -m ascendant.node --open-browser --browser chrome "$@"
   fi
 }

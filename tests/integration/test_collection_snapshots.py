@@ -9,9 +9,9 @@ import sqlite3
 import unittest
 from unittest.mock import AsyncMock, patch
 
-from bilibili_ds import tracking
-from bilibili_ds.web import dataset, distributed_dataset, sampling, weekly
-from bilibili_ds.web import snapshots as service
+from ascendant import tracking
+from ascendant.web import dataset, distributed_dataset, sampling, weekly
+from ascendant.web import snapshots as service
 from tests.integration import test_tracking as fixtures
 
 info, BVID, OTHER, TIME = fixtures.info, fixtures.BVID, fixtures.OTHER, fixtures.TIME

@@ -5,7 +5,7 @@ from copy import deepcopy
 import unittest
 from unittest.mock import AsyncMock, patch
 
-from bilibili_ds.web import actions, dataset, sampling, weekly, plots
+from ascendant.web import actions, dataset, sampling, weekly, plots
 from tests.unit.test_weekly import weekly_video
 
 

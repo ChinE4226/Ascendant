@@ -12,7 +12,7 @@ import time
 import unittest
 from urllib.request import Request, urlopen
 
-from bilibili_ds.web.reload import source_snapshot
+from ascendant.web.reload import source_snapshot
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -22,9 +22,9 @@ class ReloadTests(unittest.TestCase):
     def test_watched_sources_and_ignored_runtime(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            for folder in ("bilibili_ds", "static", "templates", ".runtime", "objects", ".venv"):
+            for folder in ("ascendant", "static", "templates", ".runtime", "objects", ".venv"):
                 (root / folder).mkdir()
-            for name in ("web_server.py", "bilibili_ds/analysis.py", "static/app.js", "templates/page.html"):
+            for name in ("web_server.py", "ascendant/analysis.py", "static/app.js", "templates/page.html"):
                 (root / name).write_text("initial")
             before = source_snapshot(root)
             backend = source_snapshot(root, backend_only=True)
@@ -36,8 +36,8 @@ class ReloadTests(unittest.TestCase):
             (root / "static/app.js").write_text("changed content")
             self.assertNotEqual(source_snapshot(root), before)
             self.assertEqual(source_snapshot(root, backend_only=True), backend)
-            (root / "bilibili_ds/analysis.py").unlink()
-            self.assertNotIn("bilibili_ds/analysis.py", source_snapshot(root))
+            (root / "ascendant/analysis.py").unlink()
+            self.assertNotIn("ascendant/analysis.py", source_snapshot(root))
 
     def test_real_server_reload_and_error_recovery(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -45,13 +45,13 @@ class ReloadTests(unittest.TestCase):
             (root / "objects").mkdir()
             for name in ("web_server.py", "web_reload.py"):
                 shutil.copy2(ROOT / name, root / name)
-            shutil.copytree(ROOT / "bilibili_ds", root / "bilibili_ds", ignore=shutil.ignore_patterns("__pycache__"))
+            shutil.copytree(ROOT / "ascendant", root / "ascendant", ignore=shutil.ignore_patterns("__pycache__"))
             shutil.copytree(ROOT / "templates", root / "templates")
             shutil.copytree(ROOT / "static", root / "static")
             # Exercise reload/lifecycle independently of Thunderbolt hardware.
-            with (root / 'bilibili_ds/distributed/network.py').open('a') as fixture:
+            with (root / 'ascendant/distributed/network.py').open('a') as fixture:
                 fixture.write("\n# Offline integration fixture: use loopback for the connection service.\ndef thunderbolt_address():\n    return '127.0.0.1'\n")
-            config_path = root / "bilibili_ds/config.py"
+            config_path = root / "ascendant/config.py"
             stamp = config_path.stat()
             py_compile.compile(str(config_path), doraise=True)
             config_path.write_text(config_path.read_text().replace("DEFAULT_REQUEST_FREQUENCY = 4.0", "DEFAULT_REQUEST_FREQUENCY = 8.0"))
@@ -113,17 +113,17 @@ class ReloadTests(unittest.TestCase):
                     updated = json.loads(request("/api/dev-version"))
                     self.assertEqual(updated["token"], second["token"])
                     self.assertNotEqual(updated["creators_revision"], second["creators_revision"])
-                    config_path = root / "bilibili_ds/config.py"
+                    config_path = root / "ascendant/config.py"
                     config_path.write_text(config_path.read_text() + "\n# Reload extracted modules too.\n")
                     wait_for(lambda: json.loads(request("/api/dev-version"))["token"] != second["token"])
                     self.assertEqual(json.loads(request('/api/health'))['request_frequency'], 8)
                     self.assertFalse(json.loads(request('/api/nodes'))['running'], 'Python development reload resets the worker')
                     second = json.loads(request("/api/dev-version"))
-                    worker_source = (root / "bilibili_ds/web/server.py").read_text()
-                    (root / "bilibili_ds/web/server.py").write_text("def broken(:\n")
+                    worker_source = (root / "ascendant/web/server.py").read_text()
+                    (root / "ascendant/web/server.py").write_text("def broken(:\n")
                     wait_for(lambda: "SyntaxError" in log_path.read_text())
                     self.assertIsNone(process.poll(), "Watcher must survive a broken worker")
-                    (root / "bilibili_ds/web/server.py").write_text(worker_source)
+                    (root / "ascendant/web/server.py").write_text(worker_source)
                     template.write_text(source)
                     wait_for(lambda: json.loads(request("/api/dev-version"))["token"] != second["token"])
                     self.assertIn("Single Video Lookup", request("/"))

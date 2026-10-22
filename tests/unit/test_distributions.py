@@ -1,6 +1,6 @@
 """Known-value checks for descriptive statistics and paired engagement."""
 import unittest
-from bilibili_ds.distributions import analyse_dataset, distribution, metric
+from ascendant.distributions import analyse_dataset, distribution, metric
 
 
 class DistributionTests(unittest.TestCase):

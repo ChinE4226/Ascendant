@@ -15,19 +15,19 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 preview_data = tempfile.TemporaryDirectory(prefix='bilibili-layout-preview-')
 atexit.register(preview_data.cleanup)
 os.environ['BILIBILI_TRACKING_DB'] = str(Path(preview_data.name) / 'tracking.sqlite3')
-from bilibili_ds.distributions import analyse_dataset
-from bilibili_ds.weekly import summarize_weekly_items
-from bilibili_ds.sampling import parse_sample_options, sample_candidates
-from bilibili_ds.plotting import plt
-from bilibili_ds.web.assets import dashboard_html
-from bilibili_ds.web.http import read_json_body
-from bilibili_ds.web.routes import BilibiliDataScienceHandler
-from bilibili_ds.web.serializers import VIDEO_FIELDS, extract_bvid, serialize_video
-from bilibili_ds.web.server import DashboardHTTPServer
-from bilibili_ds.web.weekly import parse_weekly_source
-from bilibili_ds.web import dataset
-from bilibili_ds.web.actions import execute_video_action
-from bilibili_ds.web import creators, distributed_dataset
+from ascendant.distributions import analyse_dataset
+from ascendant.weekly import summarize_weekly_items
+from ascendant.sampling import parse_sample_options, sample_candidates
+from ascendant.plotting import plt
+from ascendant.web.assets import dashboard_html
+from ascendant.web.http import read_json_body
+from ascendant.web.routes import BilibiliDataScienceHandler
+from ascendant.web.serializers import VIDEO_FIELDS, extract_bvid, serialize_video
+from ascendant.web.server import DashboardHTTPServer
+from ascendant.web.weekly import parse_weekly_source
+from ascendant.web import dataset
+from ascendant.web.actions import execute_video_action
+from ascendant.web import creators, distributed_dataset
 
 
 async def fetch_mission_preview(payload):
@@ -112,14 +112,14 @@ class PreviewHandler(BilibiliDataScienceHandler):
             return
         data = read_json_body(self)
         if path == '/api/video-action' and self.simulated_http_error is not None:
-            from bilibili_ds.errors import request_reason
+            from ascendant.errors import request_reason
             type(self).simulated_failure = f'Video collection stopped. {request_reason(status=self.simulated_http_error)}'
             self.send_error_json(400, self.simulated_failure)
             return
         if path == "/api/request-frequency":
-            from bilibili_ds.distributed.protocol import frequency
+            from ascendant.distributed.protocol import frequency
             try:
-                from bilibili_ds import state as settings
+                from ascendant import state as settings
                 type(self).request_frequency = frequency(data.get('value'))
                 settings.REQUEST_FREQUENCY = self.request_frequency
                 self.send_json({'request_frequency': self.request_frequency})

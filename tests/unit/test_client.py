@@ -8,8 +8,8 @@ from unittest.mock import AsyncMock, patch
 
 import httpx
 
-from bilibili_ds import client
-from bilibili_ds.api import Credential
+from ascendant import client
+from ascendant.api import Credential
 
 
 class ClientCleanupTests(unittest.TestCase):
